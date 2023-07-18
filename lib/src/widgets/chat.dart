@@ -97,6 +97,7 @@ class Chat extends StatefulWidget {
     this.userAgent,
     this.useTopSafeAreaInset,
     this.videoMessageBuilder,
+    this.messageWidth,
   });
 
   /// See [Message.audioMessageBuilder].
@@ -296,6 +297,8 @@ class Chat extends StatefulWidget {
   /// properties, see more here [DefaultChatTheme].
   final ChatTheme theme;
 
+  final int? messageWidth;
+
   /// Allows you to customize the time format. IMPORTANT: only for the time, do not return date here. See [dateFormat] to customize the date format. [dateLocale] will be ignored if you use this, so if you want a localized time make sure you initialize your [DateFormat] with a locale. See [customDateHeaderText] for more customization.
   final DateFormat? timeFormat;
 
@@ -432,10 +435,10 @@ class ChatState extends State<Chat> {
         messageWidget = widget.systemMessageBuilder?.call(message) ??
             SystemMessage(message: message.text);
       } else {
-        final messageWidth =
-            widget.showUserAvatars && message.author.id != widget.user.id
+        final messageWidth = widget.messageWidth ??
+            (widget.showUserAvatars && message.author.id != widget.user.id
                 ? min(constraints.maxWidth * 0.72, 440).floor()
-                : min(constraints.maxWidth * 0.78, 440).floor();
+                : min(constraints.maxWidth * 0.78, 440).floor());
 
         messageWidget = Message(
           audioMessageBuilder: widget.audioMessageBuilder,
