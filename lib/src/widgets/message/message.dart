@@ -323,14 +323,14 @@ class Message extends StatelessWidget {
               : Alignment.centerLeft,
       margin: bubbleRtlAlignment == BubbleRtlAlignment.left
           ? EdgeInsetsDirectional.only(
-              bottom: 4,
-              end: isMobile ? query.padding.right : 0,
-              start: 20 + (isMobile ? query.padding.left : 0),
+              bottom: 0,
+              end: 0,
+              start: 0,
             )
           : EdgeInsets.only(
-              bottom: 4,
-              left: 20 + (isMobile ? query.padding.left : 0),
-              right: isMobile ? query.padding.right : 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
             ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
